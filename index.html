@@ -1,0 +1,50 @@
+<!--
+   Teresa Rothaar
+   Free Code Camp Challenge #261 - Show the Local Weather
+   Build a weather app that is functionally similar to this example:
+   http://codepen.io/FreeCodeCamp/full/bELRjV/
+
+   My app needs to:
+   * Display the visitor's location and the local weather
+   * Display a different icon or background depending on the forecast
+   * Allow the user to toggle between Fahrenheit and Celsius -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Local Weather</title>
+  <meta charset="utf-8">
+
+<!-- Google Fonts -->
+<!-- TODO -->
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="weather.css">
+
+<!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Font Awesome-->
+<script src="https://use.fontawesome.com/16f8eaceda.js"></script>
+</head>
+<body onload="startClock()">
+
+  <div class="container">
+    <div class="text-center" id="clockbox"></div>
+    <div id="city"></div>
+    <div id="temperature"></div>
+    <div id="results">
+      <div id="condition"></div>
+      <div id="wind-speed"></div>
+    </div>
+    <div>
+      <input id="convert-button" type="button" class="btn btn-lg btn-primary" value="Display: °F / °C" />
+    </div>
+  </div>
+
+<!-- JavaScript -->
+<script src="weather.js"></script>
+</body>
+</html>
