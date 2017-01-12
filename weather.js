@@ -28,7 +28,7 @@ $(document).ready(function(){
 // Get the user's location using GEO IP API to fetch latitutde and longitude
 function getLocation() {
   $.get('http://ip-api.com/json', function (loc) {
-      $('#city').text(loc.city + ', ' + loc.region + ', ' + loc.country);
+      $('#city').text(loc.city + ', ' + loc.region + ', ' + loc.zip + ', ' + loc.country);
       getWeather(loc.lat, loc.lon, loc.countryCode);
     })
     .fail(function (err) {
@@ -40,8 +40,11 @@ function getWeather(lat, lon, countryCode) {
   var weatherAPI = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
     lat + '&lon=' + lon + '&units=imperial' + '&type=accurate' +
     '&APPID=15bbcb4fa894e02d487f4695efcf4ed2';
-  }
-
+    $.get( weatherAPI, function(weatherData) {
+      console.log(weatherData);
+  alert( "Load was performed." );
+});
+}
 
 // Toggle between F and C
 
