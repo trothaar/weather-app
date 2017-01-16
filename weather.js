@@ -41,8 +41,44 @@ function getWeather(lat, lon, countryCode) {
     lat + '&lon=' + lon + '&units=imperial' + '&type=accurate' +
     '&APPID=15bbcb4fa894e02d487f4695efcf4ed2';
     $.get( weatherAPI, function(weatherData) {
-      console.log(weatherData);
-  alert( "Load was performed." );
+      var temp = weatherData.main.temp.toFixed(0);
+      var tempC = ((temp - 32) * (5 / 9)).toFixed(0);
+
+
+   var city = weatherData.name;
+   var condition = weatherData.weather[0].description;
+   console.log(condition);
+   var id = weatherData.weather[0].id;
+   var main = weatherData.weather[0].main;
+   console.log(main);
+   console.log(id);
+   var speed = Number((weatherData.wind.speed * 0.86897624190816).toFixed(1));
+   var deg = weatherData.wind.deg;
+   var countryShort = weatherData.sys.country;
+   console.log(countryShort);
+
+   //Display conditions and icon on page
+   $('#condition').text(main);
+   $('#weather-icon').html("<img src='http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+
+
+   //Determine F or C based on country and display appropriate temp on button.
+    var fahrenheit = ['US', 'BS', 'BZ', 'KY', 'PL'];
+    if (fahrenheit.indexOf(countryShort) > -1) {
+      $('#convert-button').val(temp + '° F');
+    } else {
+      $('#convert-button').val(tempC + '° C');
+    }
+
+//Allow user to toggle between F and C
+     $('#convert-button').click(function () {
+     if ($('#convert-button').val().indexOf('F') > -1) {
+       $('#convert-button').val(tempC + '° C');
+     } else {
+       $('#convert-button').val(temp + '° F');
+     }
+   });
+
 });
 }
 
