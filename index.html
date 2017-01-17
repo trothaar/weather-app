@@ -15,9 +15,6 @@
   <title>Local Weather</title>
   <meta charset="utf-8">
 
-<!-- Google Fonts -->
-<!-- TODO -->
-
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="weather.css">
 
@@ -26,24 +23,32 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<!-- Font Awesome-->
-<script src="https://use.fontawesome.com/16f8eaceda.js"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <!-- Display current date and time -->
-<body>
+<body onload="startTime(); startDate()">
 
-<!-- Create container class and divs to hold different elements -->
-  <div class="container">
-    <div id="city"></div>
-    <div id="temperature"></div>
+  <div class = "container-fluid">
+ <h1 id="theHeadline">Time &amp; Temperature</h1>
+ <h2 id= "theSubhead">Current Date, Time, and Weather Conditions</h2>
+<div id="city"></div>
+
+    <div class = "well">
+    <div id="date"></div>
+    <div id="time"></div>
     <div id="results">
       <div id="condition"></div>
       <div id="weather-icon"></div>
-      <div id="wind-speed"></div>
     </div>
-    <div>
+    <div id = "temperature">
     <input id="convert-button" type="button" class="btn btn-lg btn-primary"/>
     </div>
+  </div> </div>
+
+  <div id="footer">
+  <div class="container-fluid text-center">
+    <p class="text-muted credit">By Teresa Rothaar</p>
   </div>
 
 <!-- JavaScript -->

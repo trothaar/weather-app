@@ -1,0 +1,29 @@
+html, body, .container-fluid {
+    background: #ffffe6;
+}
+
+#theHeadline, #theSubhead, #date, #time, #city, #temperature, #results, #condition, #weather-icon {
+  text-align: center;
+}
+
+#city {
+ text-align: center;
+ font-size: 2em;
+}
+
+#date, #time, #temperature, #results, #condition, #weather-icon {
+ text-align: center;
+ font-size: 1.25em;
+}
+
+div{
+  font-family: 'Roboto', sans-serif;
+}
+
+.well{
+border-radius:2px;
+position:relative;
+margin:4% auto auto auto;
+width:600px;
+padding:40px 50px;
+display:table;}

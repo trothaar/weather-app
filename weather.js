@@ -1,25 +1,44 @@
-/* Display Current Date & Time */
-/*
-tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
-tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+// Get time and date and display on page
+function startTime() {
+    var today=new Date();
+    var h=today.getHours();
+    var m=today.getMinutes();
+    var s=today.getSeconds();
+    var ampm = "";
+    m = checkTime(m);
 
-function GetClock(){
-var d=new Date();
-var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getYear();
-if(nyear<1000) nyear+=1900;
-var nhour=d.getHours(),nmin=d.getMinutes(),ap;
-if(nhour==0){ap=" AM";nhour=12;}
-else if(nhour<12){ap=" AM";}
-else if(nhour==12){ap=" PM";}
-else if(nhour>12){ap=" PM";nhour-=12;}
+    if (h > 12) {
+    	h = h - 12;
+    	ampm = " PM";
+    } else if (h == 12){
+        h = 12;
+    	ampm = " AM";
+    } else if (h < 12){
+        ampm = " AM";
+    } else {
+        ampm = "PM";
+    };
 
-if(nmin<=9) nmin="0"+nmin;
-document.getElementById('clockbox').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+" <BR> "+nhour+":"+nmin+ap+"";
+  if(h==0) {
+    h=12;
+  }
+
+    document.getElementById('time').innerHTML = h+":"+m+ampm;
+    var t = setTimeout(function(){startTime()},500);
 }
-function startClock(){
-GetClock();
-setInterval(GetClock,1000);
-} */
+
+function checkTime(i) {
+    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+function startDate() {
+  var d = new Date();
+  var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"]
+  document.getElementById("date").innerHTML = days[d.getDay()]+", "+months[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();
+}
 
 /* Begin jquery */
 $(document).ready(function(){
@@ -28,7 +47,7 @@ $(document).ready(function(){
 // Get the user's location using GEO IP API to fetch latitutde and longitude
 function getLocation() {
   $.get('http://ip-api.com/json', function (loc) {
-      $('#city').text(loc.city + ', ' + loc.region + ', ' + loc.zip + ', ' + loc.country);
+      $('#city').text(loc.city + ', ' + loc.region);
       getWeather(loc.lat, loc.lon, loc.countryCode);
     })
     .fail(function (err) {
@@ -47,15 +66,11 @@ function getWeather(lat, lon, countryCode) {
 
    var city = weatherData.name;
    var condition = weatherData.weather[0].description;
-   console.log(condition);
    var id = weatherData.weather[0].id;
    var main = weatherData.weather[0].main;
-   console.log(main);
-   console.log(id);
    var speed = Number((weatherData.wind.speed * 0.86897624190816).toFixed(1));
    var deg = weatherData.wind.deg;
    var countryShort = weatherData.sys.country;
-   console.log(countryShort);
 
    //Display conditions and icon on page
    $('#condition').text(main);
@@ -81,7 +96,5 @@ function getWeather(lat, lon, countryCode) {
 
 });
 }
-
-// Toggle between F and C
 
 });
